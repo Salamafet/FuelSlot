@@ -1,1 +1,57 @@
-<h1>Test</h1>
+<h1>FuelSlot</h1>
+
+Litter Price : <input type="text" id="litter_price" value="1.803" />
+
+<button id="calculate">Calculate</button>
+
+<br /><br />
+<div id="result" style="display: none;">
+</div>
+
+
+<script>
+
+    document.getElementById("calculate").addEventListener("click", function() {
+        calculate();
+    })
+
+    function calculate() {
+        var result = document.getElementById("result");
+        result.innerHTML = "";
+        const litter_price = document.getElementById("litter_price").value;
+        if(litter_price.length == 0)
+        {
+            alert("Litter Price empty !");
+            return;
+        }
+
+        var litter = 0;
+        var price = 0;
+        var suit_found = 0
+        while(true) {
+            litter = litter + 10;
+
+            price = (litter * litter_price).toFixed(2)
+            console.log(price)
+
+            if(price.split(".")[1] == 00)
+            {
+                if((price.split(".")[0].length == 2 && price[1] == 0) || (price.split(".")[0].length == 3 && price[2] == 0))
+                {
+                    suit_found = suit_found + 1;
+                    result.innerHTML = result.innerHTML += "Litter = " + litter + " and Price = " + price + "<br />"
+                }
+            }
+
+            if(litter == 70) {
+                if(suit_found == 0)
+                {
+                    result.innerHTML = result.innerHTML + "No good suit found !";
+                }
+                break;
+            }
+        }
+        
+        result.style.display = "";
+    }
+</script>
