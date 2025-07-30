@@ -1,57 +1,71 @@
-<h1>FuelSlot</h1>
+<html>
+<head>
+    <title>FuelSlot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 
-Litter Price : <input type="text" id="litter_price" value="1.803" />
+<body>
 
-<button id="calculate">Calculate</button>
+    <h1>FuelSlot</h1>
 
-<br /><br />
-<div id="result" style="display: none;">
-</div>
+    Litter Price : <input type="text" id="litter_price" placeholder="Example: 1.803" />
+
+    <button id="calculate">Calculate</button>
+
+    <br /><br />
+    <div id="result" style="display: none;">
+    </div>
 
 
-<script>
+    <script>
 
-    document.getElementById("calculate").addEventListener("click", function() {
-        calculate();
-    })
+        document.getElementById("calculate").addEventListener("click", function() {
+            calculate();
+        })
 
-    function calculate() {
-        var result = document.getElementById("result");
-        result.innerHTML = "";
-        const litter_price = document.getElementById("litter_price").value;
-        if(litter_price.length == 0)
-        {
-            alert("Litter Price empty !");
-            return;
-        }
-
-        var litter = 0;
-        var price = 0;
-        var suit_found = 0
-        while(true) {
-            litter = litter + 10;
-
-            price = (litter * litter_price).toFixed(2)
-            console.log(price)
-
-            if(price.split(".")[1] == 00)
+        function calculate() {
+            var result = document.getElementById("result");
+            result.innerHTML = "";
+            const litter_price = document.getElementById("litter_price").value;
+            if(litter_price.length == 0)
             {
-                if((price.split(".")[0].length == 2 && price[1] == 0) || (price.split(".")[0].length == 3 && price[2] == 0))
-                {
-                    suit_found = suit_found + 1;
-                    result.innerHTML = result.innerHTML += "Litter = " + litter + " and Price = " + price + "<br />"
-                }
+                alert("Litter Price empty !");
+                return;
             }
 
-            if(litter == 70) {
-                if(suit_found == 0)
+            var litter = 0;
+            var price = 0;
+            var suit_found = 0
+            while(true) {
+                litter = litter + 10;
+
+                price = (litter * litter_price).toFixed(2)
+                console.log(price)
+
+                if(price.split(".")[1] == 00)
                 {
-                    result.innerHTML = result.innerHTML + "No good suit found !";
+                    if((price.split(".")[0].length == 2 && price[1] == 0) || (price.split(".")[0].length == 3 && price[2] == 0))
+                    {
+                        suit_found = suit_found + 1;
+                        result.innerHTML = result.innerHTML += "Litter = " + litter + " and Price = " + price + "<br />"
+                    }
                 }
-                break;
+
+                if(litter == 70) {
+                    if(suit_found == 0)
+                    {
+                        result.innerHTML = result.innerHTML + "No good suit found !";
+                    }
+                    break;
+                }
             }
+            
+            result.style.display = "";
         }
+    </script>
+
+    <style>
         
-        result.style.display = "";
-    }
-</script>
+    </style>
+</body>
+</html>
